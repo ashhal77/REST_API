@@ -1,0 +1,254 @@
+<!doctype html>
+<html>
+
+
+<head> 
+
+  <script src="angular.js"></script>
+  <script src="script.js"></script>
+  <link href="style.css" rel = "stylesheet"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <h1>
+  Service Orchestrator Supporting Mixed Model Assembly line </h1>
+
+</head>
+
+ <!-- /////////////////////////////////////////////////
+///////////////////////////Left Side of Page/////////////////////
+/////////////////////////////////////////////// -->
+
+
+
+<body  ng-app = "myModule" ng-controller = "myController">
+
+<br></br>
+<br></br>
+
+<div style="width: 100%;">
+
+<div style="float:left; width: 60%">
+
+
+ <!-- /////////////////////////////////////////////////
+///////////////////////////Form Making/////////////////////
+/////////////////////////////////////////////// -->
+
+
+<form name="test_form" ng-submit="submit()">
+  <div class="form-group">
+    <label >Number of Pallets</label>
+    <input type="number" class="form-control" placeholder="Enter the number">
+  </div>
+
+  <div class="form-group">
+    <label >Pallets Require Specification</label>
+    <input type="number" class="form-control" placeholder="Number of Pallets">
+  </div>
+ 
+</form>
+<br></br>
+
+<ng-form ng-repeat="key in keys" name="keyForm">
+    <input type="text" name="data_input" ng-model="key.data" required>
+</ng-form>
+
+ <!-- /////////////////////////////////////////////////
+////////////////////////////////////////////////
+/////////////////////////////////////////////// -->
+
+
+
+
+
+ <!-- /////////////////////////////////////////////////
+///////////////////////////Device Specification/////////////////////
+/////////////////////////////////////////////// -->
+
+<h2>Select Device Specifications</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Select Component </th>
+      <th>Select Color </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td><select class="form-control" name="SelectFrame" id="Frame" ng-model="data.SelectFrame">
+      <option value="">---Select Frame type---</option>
+      <option>frame1</option>
+      <option>frame2</option>
+      <option>frame3</option>
+    </select></td>
+
+      <td>
+      <select class="form-control" name="SelectFrameColor" id="Frame Color" ng-model="data.SelectFrameColor">
+      <option value="">---Select Frame Color---</option>
+      <option value="color2">frame color Green</option>
+      <option value="color1">frame color Red</option>
+      <option value="color3">frame color Blue</option>
+    </select>
+    </td>
+      
+    </tr>
+    <tr>
+
+      <th scope="row">2</th>
+      <td>
+      <select class="form-control" name= "SelectScreen" id="Screen" ng-model="data.SelectScreen">
+      <option value="">---Select Screen type---</option>
+      <option>screen1</option>
+      <option>screen2</option>
+      <option>screen3</option>
+    </select>
+    </td>
+      <td> 
+      <select class="form-control" name= "SelectScreenColor" id="Screen Color" ng-model="data.SelectScreenColor">
+      <option value="">---Select Screen Color---</option>
+      <option value="color2">screen color Green</option>
+      <option value="color1">screen color Red</option>
+      <option value="color3">screen color Blue</option>
+    </select>
+    </td>
+      
+    </tr>
+    <tr>
+
+      <th scope="row">3</th>
+
+      <td>
+      <select class="form-control" name= "SelectKeypad" id="Keypad" ng-model="data.SelectKeypad">
+      <option value="">---Select Keypad type---</option>
+      <option >keyboard1</option>
+      <option>keyboard2</option>
+      <option>keyboard3</option>
+    </select>
+    </td>
+
+      <td> <select class="form-control" name= "SelectKeypadColor" id="Keypad Color" ng-model="data.SelectKeypadColor">
+      <option value="">---Select Keypad Color---</option>
+      <option value="color2">keyboard color Green</option>
+      <option value="color1">keyboard color Red</option>
+      <option value="color3">keyboard color Blue</option>
+    </select></td>
+
+     
+    </tr>
+  </tbody>
+</table>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+ <button ng-click="Submit(data.SelectFrame,data.SelectFrameColor,data.SelectScreen,data.SelectScreenColor,data.SelectKeypad,data.SelectKeypadColor);" class="btn btn-primary">Submit</button>
+
+
+ <!-- <tt>Select Frame = {{data.SelectFrame}}</tt><br>
+
+ <td>Frame: {{data.SelectFrame}}</td> -->
+
+
+ <!-- /////////////////////////////////////////////////
+//////////////////////////Customer Order/////////////////////
+/////////////////////////////////////////////// -->
+
+
+<div >
+
+<br></br>
+
+
+
+
+<h2>Customer Order</h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+     
+      <th>Pallets</th>
+      <th>Count</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat ="pallet in pallets">
+      <td >{{pallet.Pallets}} </td>
+      <td>{{pallet.Count}}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<br></br>
+
+ 
+
+
+
+    <button type="submit" class="btn btn-primary"  ng-click='SendOrder()'>Order</button>
+
+    </div>
+
+
+
+
+    <!-- /////////////////////////////////////////////////
+///////////////////////////Right Side of Page/////////////////////
+/////////////////////////////////////////////// -->
+
+    <div style="float:right;">
+
+    <div ng-controller = "myController">
+
+    <h2>Status of Pallets</h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+     
+      <th>Pallets</th>
+      <th>Progressed</th>
+      <th>Inprogress</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat ="pallet in status">
+    <td>{{pallet.Pallets}} </td>
+    <td>{{pallet.Progressed}}</td>
+  <td>{{pallet.Inprogress}}</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+
+
+</div>
+    </div>
+</div>
+
+
+</body>
+
+</html>

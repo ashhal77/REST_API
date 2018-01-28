@@ -1,0 +1,44 @@
+table {
+
+	border-collapse: collapse;
+	font-family: Arial;
+}
+
+td {
+
+	border: 1px solid black;
+	padding: 5px;
+	background-color: lavender;
+}
+
+th {
+
+	border: 1px solid black;
+	padding: 5px;
+	text-align: left; 
+	background-color: DODGERBLUE;
+}
+
+button {
+  background-color: MEDIUMORCHID;
+  border:1px solid black;
+}
+
+h1
+{
+	color: black;
+}
+
+body {
+    background-color: DARKSEAGREEN;
+}
+
+table {
+ float:left;
+}
+
+select
+{
+
+	background-color: DODGERBLUE;
+}
